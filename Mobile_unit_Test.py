@@ -1,5 +1,8 @@
 
 '''
+Mobile Automation Test 참고자료 
+
+
 Kakao Game SDK Test App
 Device: V10 (LGF600Kb1134738)
 '''
