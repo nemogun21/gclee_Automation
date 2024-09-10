@@ -1,1 +1,1 @@
-b.test BBBB
+b.test
