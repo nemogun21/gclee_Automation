@@ -18,8 +18,9 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        #with:  
-         # projectBaseDir: .
+        with:  
+          sonar.projectKey: nemogun21_gclee_repository_AZH01S-9ABWUsmXJ0GLx
+          #projectBaseDir: 
       # If you wish to fail your job when the Quality Gate is red, uncomment the
       # following lines. This would typically be used to fail a deployment.
       # - uses: sonarsource/sonarqube-quality-gate-action@master
