@@ -19,8 +19,14 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         with:  
-          sonar.projectKey: nemogun21_gclee_repository_AZH01S-9ABWUsmXJ0GLx
-          #projectBaseDir: 
+          projectBaseDir: C:\Users\nemog\hello-git
+          args: >
+             -D"sonar.projectKey=nemogun21_gclee_Automation_AZHt1EZ5FNTL7TEH1A6K" 
+             -D"sonar.sources=." 
+             -D"sonar.host.url=http://223.131.50.184:9000" 
+             -D"sonar.login=sqp_2cc57245f4e90db2f4dadf7c3f23035d64c4e7ec"
+          #sonar.projectKey: nemogun21_gclee_repository_AZH01S-9ABWUsmXJ0GLx
+          
       # If you wish to fail your job when the Quality Gate is red, uncomment the
       # following lines. This would typically be used to fail a deployment.
       # - uses: sonarsource/sonarqube-quality-gate-action@master
