@@ -19,7 +19,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         with:  
-          projectBaseDir: C:\Users\nemog\hello-git
+          projectBaseDir: app/src
           args: >
              -D"sonar.projectKey=nemogun21_gclee_Automation_AZHt1EZ5FNTL7TEH1A6K" 
              -D"sonar.sources=." 
