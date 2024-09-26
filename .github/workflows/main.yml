@@ -19,8 +19,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
           SONARQUBE_PROJECT_KEY: ${{ secrets.SONARQUBE_PROJECT_KEY }}
-          sonar.login: ${{ admin }}
-          sonar.password: ${{ qwer }}
+          sonar.login: ${{ secrets.SONAR_LOGIN }}
+          sonar.password: ${{ secrets.SONAR_PASSWORD }}
           # SONAR_LOGIN: ${{ secrets.SONAR_LOGIN }}
           # SONAR_PASSWORD: ${{ secrets.SONAR_PASSWORD }}
           
