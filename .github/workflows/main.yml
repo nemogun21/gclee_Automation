@@ -19,8 +19,10 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
           SONARQUBE_PROJECT_KEY: ${{ secrets.SONARQUBE_PROJECT_KEY }}
-          SONAR_LOGIN: ${{ secrets.SONAR_LOGIN }}
-          SONAR_PASSWORD: ${{ secrets.SONAR_PASSWORD }}
+          sonar.login: ${{ admin }}
+          sonar.password: ${{ qwer }}
+          # SONAR_LOGIN: ${{ secrets.SONAR_LOGIN }}
+          # SONAR_PASSWORD: ${{ secrets.SONAR_PASSWORD }}
           
         # with:  
         #   projectBaseDir: \C:\Users\nemog\hello-git
