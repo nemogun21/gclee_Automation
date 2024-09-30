@@ -5,29 +5,61 @@ on:
     branches:
       - master
 
-
 jobs:
   build:
-    name: Build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04 # 실행 환경 지정
+
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-          #SONARQUBE_PROJECT_KEY: ${{ secrets.SONARQUBE_PROJECT_KEY 
-        with:  
-          # projectBaseDir: \C:\Users\nemog\hello-git
-          args: >
-             -D"sonar.projectKey=nemogun21_gclee_Automation_AZHt1EZ5FNTL7TEH1A6K" 
-             -D"sonar.sources=." 
-             -D"sonar.host.url=http://223.131.50.184:9000" 
-             -D"sonar.login=sqp_69d03e7f93c8df7c4a8700947e40bc36a02b4483"
-             -D"sonar.login=admin"
-             -D"sonar.password=qwer"
+      - name: Checkout source code
+        uses: actions/checkout@v2
+  analysis:
+    runs-on: ubuntu-22.04
+    env:
+      SONARQUBE_PROJECT_KEY: ${{ secrets.SONARQUBE_PROJECT_KEY }}
+      SONARQUBE_URL: ${{secrets.SONARQUBE_URL}}
+      SONARQUBE_TOKEN: ${{secrets.SONARQUBE_TOKEN}}
+      # PR_NUMBER: ${{github.event.pull_request.number}}
+    steps:
+      # 소스코드 체크아웃 수행
+      - name: Checkout source code
+        uses: actions/checkout@v2
+
+      # gradlw 파일 권한 변경
+      - name: gradlew permission change
+        run: sudo chmod 755 gradlew
+
+      # Gralde 의 Scanner 발동, 위의 env 에서 선언한 환경변수와 함께 발동
+      - name: Sonaqube Analysis
+        run: ./gradlew test sonarqube
+          -Dsonar.host.url=${{ secrets.SONARQUBE_URL }}
+          -Dsonar.projectKey=${{ secrets.SONARQUBE_PROJECT_KEY }}
+          -Dsonar.login=${{ secrets.SONARQUBE_TOKEN }}
+
+
+
+
+# jobs:
+#   build:
+#     name: Build
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#         with:
+#           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+#       - uses: sonarsource/sonarqube-scan-action@master
+#         env:
+#           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+#           #SONARQUBE_PROJECT_KEY: ${{ secrets.SONARQUBE_PROJECT_KEY 
+#         with:  
+#           # projectBaseDir: \C:\Users\nemog\hello-git
+#           args: >
+#              -D"sonar.projectKey=nemogun21_gclee_Automation_AZHt1EZ5FNTL7TEH1A6K" 
+#              -D"sonar.sources=." 
+#              -D"sonar.host.url=http://223.131.50.184:9000" 
+#              -D"sonar.login=sqp_69d03e7f93c8df7c4a8700947e40bc36a02b4483"
+#              -D"sonar.login=admin"
+#              -D"sonar.password=qwer"
           
       # If you wish to fail your job when the Quality Gate is red, uncomment the
       # following lines. This would typically be used to fail a deployment.
